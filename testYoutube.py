@@ -1,8 +1,8 @@
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from utils import *
 from params import *
-from datetime import datetime
 import unittest
 import time
 
@@ -21,7 +21,15 @@ class TestYoutubeFilter(unittest.TestCase):
 
     def test_sort_by_view_count(self):
         """ Test sort by view count feature """
-        pass
+        self.driver.find_element_by_xpath(XPATH_SORT_BY_VIEW_COUNT_BUTTON).click()
+        time.sleep(2)
+        # Store first value before loop
+        prev_count = extract_view_count(self.driver.find_element_by_xpath(XPATH_VIDEO_VIEW_COUNT).text)
+        # Iterate over view counts
+        for count in self.driver.find_elements_by_xpath(XPATH_VIDEO_VIEW_COUNT):
+            curr_count = extract_view_count(count.text)
+            assert curr_count <= prev_count
+            prev_count = curr_count
 
     # def test_sort_by_upload_date(self):
     #     """ Test sort by upload date feature """
