@@ -9,6 +9,7 @@ XPATH_FILTER_BUTTON = "//paper-button[yt-formatted-string='Filter']"
 XPATH_SORT_BY_VIEW_COUNT_BUTTON = "//div[@title='Sort by view count']"
 XPATH_SORT_BY_UPLOAD_DATE_BUTTON = "//div[@title='Sort by upload date']"
 XPATH_FILTER_BY_SHORT_DURATION_BUTTON = "//yt-formatted-string[text()='Short (< 4 minutes)']"
+XPATH_FILTER_BY_LONG_DURATION_BUTTON = "//yt-formatted-string[text()='Long (> 20 minutes)']"
 
 XPATH_VIDEO_VIEW_COUNT = "//span[@class='style-scope ytd-video-meta-block'][1]"
 XPATH_VIDEO_UPLOAD_TIME = "//span[@class='style-scope ytd-video-meta-block'][2]"

@@ -54,9 +54,18 @@ class TestYoutubeFilter(unittest.TestCase):
                 assert duration.hour == 0
                 assert duration.minute < FOUR_MINUTES
 
-    # def test_filter_long_duration(self):
-    #     """ Test filter long videos (> 20 minutes) feature """
-    #     pass
+    def test_filter_long_duration(self):
+        """ Test filter long videos (> 20 minutes) feature """
+        self.driver.find_element_by_xpath(XPATH_FILTER_BY_LONG_DURATION_BUTTON).click()
+        time.sleep(WAIT_TIME)
+        for element in self.driver.find_elements_by_xpath(XPATH_DURATION_THUMBNAIL):
+            if element.text is not u'':
+                if len(element.text) > 5:
+                    duration = datetime.strptime(element.text, '%H:%M:%S')
+                else:
+                    duration = datetime.strptime(element.text, '%M:%S')
+                if duration.hour == 0:
+                    assert duration.minute >= TWENTY_MINUTES
 
     def tearDown(self):
         """ Close webdriver"""
